@@ -124,6 +124,8 @@ Class FinishA{
 
     public function __construct($database)
     {
+        var_dump($database[1]);
+        arsort($database);
         echo '<table>';
         foreach ($database as $item){
             $timestamp = mt_rand(1, time());
@@ -155,9 +157,17 @@ Class FinishA{
             $item['penalty'];
             $finalTime = $parts[0].":".$finalTimeSeconds.":".$parts[2];
             $item['final_time'] = $finalTime;
+            $item['place'] = $parts[0].$finalTimeSeconds.$parts[2];
+            $i = 0;
+            $database[$i]['final_time'] = $finalTime;
+            $i++;
 
 
-            if ($item['class'] === 'V'){
+
+
+
+
+            if ($item['class'] === 'A'){
                 echo '<tr>';
                 echo '<td>';
                 echo $item['id'];
@@ -184,25 +194,21 @@ Class FinishA{
                 echo $item['final_time'];
                 echo '<td>';
                 echo '</tr>';
+
             }
-
-
-
         }
+        var_dump($database);
         echo '<table>';
     }
-
     function hi (){
-
-        echo 12;
+        echo 'hu';
     }
-
-
-
-
-
-
 }
+
+
+
+
+
 //Class ChampionsA extends finishA{
 //    function ola (){
 //        echo 1;

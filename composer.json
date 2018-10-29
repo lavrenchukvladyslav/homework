@@ -1,0 +1,10 @@
+{
+    "autoload": {
+        "classmap": [
+            "src/Sort.php"
+        ],
+        "psr-4": {
+            "NameSpace\\": "src"
+        }
+    }
+}
