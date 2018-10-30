@@ -6,25 +6,37 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit39ca6bc80b7e319c5c841cda59ce1371
 {
+    public static $files = array (
+        'c691adc11f1e5f70f9ab17f369ae38f6' => __DIR__ . '/../..' . '/data/database.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
-        'N' => 
+        'S' => 
         array (
-            'NameSpace\\' => 10,
+            'Services\\' => 9,
+        ),
+        'A' => 
+        array (
+            'App\\' => 4,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'NameSpace\\' => 
+        'Services\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+        'App\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app',
         ),
     );
 
     public static $classMap = array (
-        'FinishA' => __DIR__ . '/../..' . '/src/Sort.php',
         'Sort1' => __DIR__ . '/../..' . '/src/Sort.php',
         'Sort2' => __DIR__ . '/../..' . '/src/Sort.php',
         'Sort3' => __DIR__ . '/../..' . '/src/Sort.php',
+        'src\\FinishA' => __DIR__ . '/../..' . '/src/FinishA.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

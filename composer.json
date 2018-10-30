@@ -1,10 +1,15 @@
 {
     "autoload": {
         "classmap": [
-            "src/Sort.php"
+            "src/Sort.php",
+            "src/FinishA.php"
         ],
         "psr-4": {
-            "NameSpace\\": "src"
-        }
+            "Services\\": "src",
+            "App\\": "app"
+        },
+        "files": [
+            "data/database.php"
+        ]
     }
 }
