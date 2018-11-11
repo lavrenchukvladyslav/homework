@@ -6,37 +6,39 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit39ca6bc80b7e319c5c841cda59ce1371
 {
-    public static $files = array (
-        'c691adc11f1e5f70f9ab17f369ae38f6' => __DIR__ . '/../..' . '/data/database.php',
-    );
-
     public static $prefixLengthsPsr4 = array (
-        'S' => 
+        's' => 
         array (
-            'Services\\' => 9,
+            'src\\' => 4,
         ),
-        'A' => 
+        'd' => 
         array (
-            'App\\' => 4,
+            'data\\' => 5,
+        ),
+        'a' => 
+        array (
+            'app\\' => 4,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Services\\' => 
+        'src\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
-        'App\\' => 
+        'data\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/data',
+        ),
+        'app\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
         ),
     );
 
     public static $classMap = array (
-        'Sort1' => __DIR__ . '/../..' . '/src/Sort.php',
-        'Sort2' => __DIR__ . '/../..' . '/src/Sort.php',
-        'Sort3' => __DIR__ . '/../..' . '/src/Sort.php',
-        'src\\FinishA' => __DIR__ . '/../..' . '/src/FinishA.php',
+        'src\\Finish' => __DIR__ . '/../..' . '/src/Finish.php',
+        'src\\Sort' => __DIR__ . '/../..' . '/src/Sort.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

@@ -1,13 +1,19 @@
 <?php
-require_once __DIR__.'/../data/database.php';
-Class Sort1{
+//require_once __DIR__.'/../data/database.php';
 
-    public function __construct($database)
+namespace src;
+
+Class Sort{
+//    public function __construct($database, $class){
+//
+//    }
+
+    public function renderStart($database, $class)
     {
         echo '<table>';
 
         foreach ($database as $item){
-                if ($item['class'] === 'A'){
+                if ($item['class'] === $class){
                     echo '<tr>';
                     echo '<td>';
                     echo $item['id'];
@@ -37,73 +43,4 @@ Class Sort1{
 
 }
 
-Class Sort2{
 
-    public function __construct($database)
-    { echo '<table>';
-
-        foreach ($database as $item){
-            if ($item['class'] === 'B'){
-                echo '<tr>';
-                echo '<td>';
-                echo $item['id'];
-                echo '<td>';
-
-                echo '<td>';
-                echo $item['class'];
-                echo '<td>';
-
-                echo '<td>';
-                echo $item['name'];
-                echo '<td>';
-
-                echo '<td>';
-                echo $item['vehicle'];
-                echo '<td>';
-                echo '</tr>';
-            }
-        }
-
-
-
-
-        echo '</table>';
-    }
-
-
-}
-Class Sort3{
-
-    public function __construct($database)
-    { echo '<table>';
-
-        foreach ($database as $item){
-            if ($item['class'] === 'C'){
-                echo '<tr>';
-                echo '<td>';
-                echo $item['id'];
-                echo '<td>';
-
-                echo '<td>';
-                echo $item['class'];
-                echo '<td>';
-
-                echo '<td>';
-                echo $item['name'];
-                echo '<td>';
-
-                echo '<td>';
-                echo $item['vehicle'];
-                echo '<td>';
-                echo '</tr>';
-            }
-        }
-
-
-
-
-        echo '</table>';
-    }
-
-
-}

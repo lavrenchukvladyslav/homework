@@ -6,8 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Sort1' => $baseDir . '/src/Sort.php',
-    'Sort2' => $baseDir . '/src/Sort.php',
-    'Sort3' => $baseDir . '/src/Sort.php',
-    'src\\FinishA' => $baseDir . '/src/FinishA.php',
+    'src\\Finish' => $baseDir . '/src/Finish.php',
+    'src\\Sort' => $baseDir . '/src/Sort.php',
 );

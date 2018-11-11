@@ -1,15 +1,12 @@
 {
-    "autoload": {
-        "classmap": [
-            "src/Sort.php",
-            "src/FinishA.php"
-        ],
-        "psr-4": {
-            "Services\\": "src",
-            "App\\": "app"
-        },
-        "files": [
-            "data/database.php"
-        ]
+  "autoload":{
+    "psr-4": {
+      "app\\":"app",
+      "src\\":"src",
+      "data\\":"data"
     }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.4"
+  }
 }

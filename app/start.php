@@ -1,11 +1,12 @@
 <?php
-//require_once '../index.php';
-//require_once __DIR__. '/../data/database.php';
-require_once __DIR__.'/../src/Sort.php';
-//namespace Clases;
-//use Clases\Sort1;
-//use Sort2;
-//use Sort3;
-new Sort1($database);
-new Sort2($database);
-new Sort3($database);
+
+//require_once __DIR__.'/../src/Sort.php';
+use src\Sort;
+require_once '../data/database.php';
+require_once '../vendor/autoload.php';
+$sort = new Sort();
+
+$sort->renderStart($database, 'A');
+$sort->renderStart($database, 'B');
+$sort->renderStart($database, 'C');
+
