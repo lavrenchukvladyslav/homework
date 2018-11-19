@@ -3,7 +3,15 @@
 namespace src;
 
 Class Finish{
-    public function addTimeAndSortByTime($database)
+
+    public function addRound($database){
+
+        return $database;
+    }
+
+
+
+    public function addTime($database)
     {
         foreach ($database as $item => $value) {
             $timestamp = mt_rand(1, time());
@@ -45,8 +53,15 @@ Class Finish{
             array_push($winers, "$finalTime2");
             array_push($database[$item]['final_time2'], "$finalTime2");
 
+        } return $database;
+
+
+
+
+
         }
 
+    public function sortByTime ($database){
         $new_array = array();
         $sortable_array = array();
 
@@ -62,7 +77,7 @@ Class Finish{
                     $sortable_array[$k] = $v;
                 }
             }
-                    asort($sortable_array);
+            asort($sortable_array);
 
             foreach ($sortable_array as $k => $v) {
                 $new_array[$k] = $database[$k];
@@ -70,18 +85,48 @@ Class Finish{
         }
 
         return $new_array;
+    }
+    public function CalculateRoundsTime ($database){
 
-
-
+        foreach ($database as $item => $value) {
+            echo $database[$item]['final_time2'];
         }
+    }
+
 
 
 //    $database = array_sort($database, 'place', SORT_ASC);
-    public function renderFinishTable($database, $class)
+    public function renderFinishTable($database, $class, $round)
     {
 
-        echo '<h1>Category '.$class.'</h1>';
+        echo '<h3>'.'Category '.$class.'</h3>';
         echo '<table>';
+        echo '<tr>';
+        echo '<th>';
+        echo 'ID';
+        echo '<th>';
+
+        echo '<th>';
+        echo 'CLASS';
+        echo '<th>';
+
+        echo '<th>';
+        echo 'NAME';
+        echo '<th>';
+
+        echo '<th>';
+        echo 'VEHICLE';
+        echo '<th>';
+        echo '<th>';
+        echo 'TIME';
+        echo '<th>';
+        echo '<th>';
+        echo 'PENALTY';
+        echo '<th>';
+        echo '<th>';
+        echo 'RESULT TIME';
+        echo '<th>';
+        echo '</tr>';
         foreach ($database as $item => $value) {
             if ($database[$item]['class'] === $class) {
                 echo '<tr>';
@@ -117,11 +162,37 @@ Class Finish{
 
         echo '</table>';
     }
-    public function renderWinnersTable($database, $class){
+    public function renderWinnersTable($database, $class, $round){
 
-        echo '<h1>Winners '.$class.'</h1>';
+        echo '<h3>'.'Winners '.$class.'</h3>';
         echo '<table>';
         $i=0;
+        echo '<tr>';
+        echo '<th>';
+        echo 'ID';
+        echo '<th>';
+
+        echo '<th>';
+        echo 'CLASS';
+        echo '<th>';
+
+        echo '<th>';
+        echo 'NAME';
+        echo '<th>';
+
+        echo '<th>';
+        echo 'VEHICLE';
+        echo '<th>';
+        echo '<th>';
+        echo 'TIME';
+        echo '<th>';
+        echo '<th>';
+        echo 'PENALTY';
+        echo '<th>';
+        echo '<th>';
+        echo 'RESULT TIME';
+        echo '<th>';
+        echo '</tr>';
         foreach ($database as $item => $value){
 
             if ($database[$item]['class'] === $class){
@@ -156,8 +227,5 @@ Class Finish{
         }
 
         echo '</table>';
-}
-    function hi ($a){
-        echo $a;
 }
 }
