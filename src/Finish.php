@@ -11,55 +11,109 @@ Class Finish{
 
 
 
-    public function addTime($database)
+//    public function addTime($database)
+//    {
+//        foreach ($database as $item => $value) {
+//            $timestamp = mt_rand(1, time());
+//            $randomDate = date("H:i:s", $timestamp);
+//            $database[$item]['time'] = $randomDate;
+//            $penalty = mt_rand(0, 5);
+//            $database[$item]['penalty'] = $penalty;
+//
+//
+//            $database[$item]['time'];
+//            $parts = explode(":", $database[$item]['time']);
+//            $finalTimeSeconds = $parts[1] + $database[$item]['penalty'];
+//
+//            if ($finalTimeSeconds > 59) {
+//                $parts[0] = $parts[0] + 1;
+//                $finalTimeSeconds = $finalTimeSeconds - 60;
+//
+//            } else {
+//                $parts[0] = $parts[0] + 0;
+//                $parts[1] = $parts[1] + $database[$item]['penalty'];
+//            }
+//            if ($parts[0] < 10) {
+//                $parts[0] = '0' . $parts[0];
+//            }
+//            if ($finalTimeSeconds < 10) {
+//                $finalTimeSeconds = '0' . $finalTimeSeconds;
+//            }
+//            $database[$item]['time'];
+//            $database[$item]['penalty'];
+//            $finalTime = $parts[0] . ":" . $finalTimeSeconds . ":" . $parts[2];
+//            $finalTime2 = $parts[0] . $finalTimeSeconds . $parts[2];
+//            $database[$item]['final_time'] = $finalTime;
+//            $finalTime2 = intval($finalTime2);
+//            $database[$item]['place'] = $finalTime2;
+//
+//            $database[$item]['final_time2'] = $finalTime;
+//
+//        } return $database;
+//    }
+
+
+    public function addTime($database, $round)
     {
+
         foreach ($database as $item => $value) {
-            $timestamp = mt_rand(1, time());
-            $randomDate = date("H:i:s", $timestamp);
-            $database[$item]['time'] = $randomDate;
-            $penalty = mt_rand(0, 5);
-            $database[$item]['penalty'] = $penalty;
-
-
-            $database[$item]['time'];
-            $parts = explode(":", $database[$item]['time']);
-            $finalTimeSeconds = $parts[1] + $database[$item]['penalty'];
-
-            if ($finalTimeSeconds > 59) {
-                $parts[0] = $parts[0] + 1;
-                $finalTimeSeconds = $finalTimeSeconds - 60;
-
-            } else {
-                $parts[0] = $parts[0] + 0;
-                $parts[1] = $parts[1] + $database[$item]['penalty'];
+            $database[$item]['time'] = mt_rand(1, 200);
+            $database[$item]['penalty'] = mt_rand(0, 5);
+            $database[$item]['final_time'] = $database[$item]['time'] + $database[$item]['penalty'];
+            $database[$item]['best_time'] = $database[$item]['final_time'];
+            switch($round) {
+                case 2:
+                    $database[$item]['time2'] = mt_rand(1, 200);
+                    $database[$item]['penalty2'] = mt_rand(0, 5);
+                    $database[$item]['final_time2'] = $database[$item]['time2'] + $database[$item]['penalty2'];
+                    $database[$item]['best_time'] = min($database[$item]['final_time'],$database[$item]['final_time2']);
+                break;
+                case 3:
+                    $database[$item]['time2'] = mt_rand(1, 200);
+                    $database[$item]['penalty2'] = mt_rand(0, 5);
+                    $database[$item]['final_time2'] = $database[$item]['time2'] + $database[$item]['penalty2'];
+                    $database[$item]['time3'] = mt_rand(1, 200);
+                    $database[$item]['penalty3'] = mt_rand(0, 5);
+                    $database[$item]['final_time3'] = $database[$item]['time3'] + $database[$item]['penalty3'];
+                    $database[$item]['best_time'] = min($database[$item]['final_time'],$database[$item]['final_time2'],$database[$item]['final_time3']);
+                break;
+                case 4:
+                    $database[$item]['time2'] = mt_rand(1, 200);
+                    $database[$item]['penalty2'] = mt_rand(0, 5);
+                    $database[$item]['final_time2'] = $database[$item]['time2'] + $database[$item]['penalty2'];
+                    $database[$item]['time3'] = mt_rand(1, 200);
+                    $database[$item]['penalty3'] = mt_rand(0, 5);
+                    $database[$item]['final_time3'] = $database[$item]['time3'] + $database[$item]['penalty3'];
+                    $database[$item]['time4'] = mt_rand(1, 200);
+                    $database[$item]['penalty4'] = mt_rand(0, 5);
+                    $database[$item]['final_time4'] = $database[$item]['time4'] + $database[$item]['penalty4'];
+                    $database[$item]['best_time'] = min($database[$item]['final_time'],$database[$item]['final_time2'],$database[$item]['final_time3'],$database[$item]['final_time4']);
+                    break;
+                case 5:
+                    $database[$item]['time2'] = mt_rand(1, 200);
+                    $database[$item]['penalty2'] = mt_rand(0, 5);
+                    $database[$item]['final_time2'] = $database[$item]['time2'] + $database[$item]['penalty2'];
+                    $database[$item]['time3'] = mt_rand(1, 200);
+                    $database[$item]['penalty3'] = mt_rand(0, 5);
+                    $database[$item]['final_time3'] = $database[$item]['time3'] + $database[$item]['penalty3'];
+                    $database[$item]['time4'] = mt_rand(1, 200);
+                    $database[$item]['penalty4'] = mt_rand(0, 5);
+                    $database[$item]['final_time4'] = $database[$item]['time4'] + $database[$item]['penalty4'];
+                    $database[$item]['time5'] = mt_rand(1, 200);
+                    $database[$item]['penalty5'] = mt_rand(0, 5);
+                    $database[$item]['final_time5'] = $database[$item]['time5'] + $database[$item]['penalty5'];
+                    $database[$item]['best_time'] = min($database[$item]['final_time'],$database[$item]['final_time2'],$database[$item]['final_time3'],$database[$item]['final_time4'],$database[$item]['final_time5']);
+                    break;
             }
-            if ($parts[0] < 10) {
-                $parts[0] = '0' . $parts[0];
-            }
-            if ($finalTimeSeconds < 10) {
-                $finalTimeSeconds = '0' . $finalTimeSeconds;
-            }
-            $database[$item]['time'];
-            $database[$item]['penalty'];
-            $finalTime = $parts[0] . ":" . $finalTimeSeconds . ":" . $parts[2];
-            $finalTime2 = $parts[0] . $finalTimeSeconds . $parts[2];
-            $database[$item]['final_time'] = $finalTime;
-            $finalTime2 = intval($finalTime2);
-            $database[$item]['place'] = $finalTime2;
-
-            $database[$item]['final_time2'] = $finalTime;
-
-
-            array_push($winers, "$finalTime2");
-            array_push($database[$item]['final_time2'], "$finalTime2");
-
         } return $database;
+    }
 
 
 
 
 
-        }
+
+
 
     public function sortByTime ($database){
         $new_array = array();
@@ -69,7 +123,7 @@ Class Finish{
             foreach ($database as $k => $v) {
                 if (is_array($v)) {
                     foreach ($v as $k2 => $v2) {
-                        if ($k2 == 'place') {
+                        if ($k2 == 'best_time') {
                             $sortable_array[$k] = $v2;
                         }
                     }
@@ -85,12 +139,6 @@ Class Finish{
         }
 
         return $new_array;
-    }
-    public function CalculateRoundsTime ($database){
-
-        foreach ($database as $item => $value) {
-            echo $database[$item]['final_time2'];
-        }
     }
 
 
@@ -126,6 +174,12 @@ Class Finish{
         echo '<th>';
         echo 'RESULT TIME';
         echo '<th>';
+        echo '<th>';
+        echo 'PENALTY2';
+        echo '<th>';
+        echo '<th>';
+        echo 'RESULT TIME2';
+        echo '<th>';
         echo '</tr>';
         foreach ($database as $item => $value) {
             if ($database[$item]['class'] === $class) {
@@ -154,9 +208,45 @@ Class Finish{
                 echo '<td>';
                 echo $database[$item]['final_time'];
                 echo '<td>';
+                echo '<td>';
+                echo $database[$item]['time2'];
+                echo '<td>';
+                echo '<td>';
+                echo $database[$item]['penalty2'];
+                echo '<td>';
+                echo '<td>';
+                echo $database[$item]['final_time2'];
+                echo '<td>';
+                echo '<td>';
+                echo $database[$item]['time3'];
+                echo '<td>';
+                echo '<td>';
+                echo $database[$item]['penalty3'];
+                echo '<td>';
+                echo '<td>';
+                echo $database[$item]['final_time3'];
+                echo '<td>';
+                echo '<td>';
+                echo $database[$item]['time4'];
+                echo '<td>';
+                echo '<td>';
+                echo $database[$item]['penalty4'];
+                echo '<td>';
+                echo '<td>';
+                echo $database[$item]['final_time4'];
+                echo '<td>';
+                echo '<td>';
+                echo $database[$item]['time5'];
+                echo '<td>';
+                echo '<td>';
+                echo $database[$item]['penalty5'];
+                echo '<td>';
+                echo '<td>';
+                echo $database[$item]['final_time5'];
+                echo '<td>';
                 echo '</tr>';
-                asort($winers);
-                echo($winers);
+//                asort($winers);
+//                echo($winers);
             }
         }
 
@@ -221,8 +311,8 @@ Class Finish{
                 echo $database[$item]['final_time'];
                 echo '<td>';
                 echo '</tr>';
-                asort($winers);
-                echo ($winers);
+//                asort($winers);
+//                echo ($winers);
             }
         }
 

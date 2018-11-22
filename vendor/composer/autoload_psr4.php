@@ -11,6 +11,9 @@ return array(
     'data\\' => array($baseDir . '/data'),
     'app\\' => array($baseDir . '/app'),
     'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),
+    'Twig\\' => array($vendorDir . '/twig/twig/src'),
+    'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
+    'Symfony\\Polyfill\\Ctype\\' => array($vendorDir . '/symfony/polyfill-ctype'),
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
 );

@@ -1,0 +1,119 @@
+{% block table %}
+    <style>
+        table tr td{
+            border: 1px solid black;
+            padding: 3px;
+            margin: 0;
+            text-align: center;
+        }
+    </style>
+    <h4>Category {{ sort }}</h4>
+<table>
+    <tr style="background-color: gainsboro">
+        <td>{{ 'id'|upper }}</td>
+        <td>{{ 'class'|upper }}</td>
+        <td>{{ 'name'|upper }}</td>
+        <td>{{ 'vehicle'|upper }}</td>
+        <td>{{ 'round 1 time'|upper }}</td>
+        <td>{{ 'round 1 penalty'|upper }}</td>
+        <td>{{ 'round 1 final time'|upper }}</td>
+        {% if round == 2 %}
+            <td>{{ 'round 2 time'|upper }}</td>
+            <td>{{ 'round 2 penalty'|upper }}</td>
+            <td>{{ 'round 2 final time'|upper }}</td>
+            <td>{{ 'best time'|upper }}</td>
+        {% endif %}
+        {% if round == 3 %}
+            <td>{{ 'round 2 time'|upper }}</td>
+            <td>{{ 'round 2 penalty'|upper }}</td>
+            <td>{{ 'round 2 final time'|upper }}</td>
+            <td>{{ 'round 3 time'|upper }}</td>
+            <td>{{ 'round 3 penalty'|upper }}</td>
+            <td>{{ 'round 3 final time'|upper }}</td>
+            <td>{{ 'best time'|upper }}</td>
+        {% endif %}
+        {% if round == 4 %}
+            <td>{{ 'round 2 time'|upper }}</td>
+            <td>{{ 'round 2 penalty'|upper }}</td>
+            <td>{{ 'round 2 final time'|upper }}</td>
+            <td>{{ 'round 3 time'|upper }}</td>
+            <td>{{ 'round 3 penalty'|upper }}</td>
+            <td>{{ 'round 3 final time'|upper }}</td>
+            <td>{{ 'round 4 time'|upper }}</td>
+            <td>{{ 'round 4 penalty'|upper }}</td>
+            <td>{{ 'round 4 final time'|upper }}</td>
+            <td>{{ 'best time'|upper }}</td>
+        {% endif %}
+        {% if round == 5 %}
+            <td>{{ 'round 2 time'|upper }}</td>
+            <td>{{ 'round 2 penalty'|upper }}</td>
+            <td>{{ 'round 2 final time'|upper }}</td>
+            <td>{{ 'round 3 time'|upper }}</td>
+            <td>{{ 'round 3 penalty'|upper }}</td>
+            <td>{{ 'round 3 final time'|upper }}</td>
+            <td>{{ 'round 4 time'|upper }}</td>
+            <td>{{ 'round 4 penalty'|upper }}</td>
+            <td>{{ 'round 4 final time'|upper }}</td>
+            <td>{{ 'round 5 time'|upper }}</td>
+            <td>{{ 'round 5 penalty'|upper }}</td>
+            <td>{{ 'round 5 final time'|upper }}</td>
+            <td>{{ 'best time'|upper }}</td>
+        {% endif %}
+    </tr>
+    {% for item in database %}
+        {% if item.class == sort %}
+            <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.class }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.vehicle }}</td>
+            <td>{{ item.time }}</td>
+            <td>{{ item.penalty }}</td>
+            <td>{{ item.final_time }}</td>
+            {% if round == 2 %}
+                <td>{{ item.time2 }}</td>
+                <td>{{ item.penalty2 }}</td>
+                <td>{{ item.final_time2 }}</td>
+                <td>{{ item.best_time }}</td>
+            {% endif %}
+            {% if round == 3 %}
+                <td>{{ item.time2 }}</td>
+                <td>{{ item.penalty2 }}</td>
+                <td>{{ item.final_time2 }}</td>
+                <td>{{ item.time3 }}</td>
+                <td>{{ item.penalty3 }}</td>
+                <td>{{ item.final_time3 }}</td>
+                <td>{{ item.best_time }}</td>
+            {% endif %}
+            {% if round == 4 %}
+                <td>{{ item.time2 }}</td>
+                <td>{{ item.penalty2 }}</td>
+                <td>{{ item.final_time2 }}</td>
+                <td>{{ item.time3 }}</td>
+                <td>{{ item.penalty3 }}</td>
+                <td>{{ item.final_time3 }}</td>
+                <td>{{ item.time4 }}</td>
+                <td>{{ item.penalty4 }}</td>
+                <td>{{ item.final_time4 }}</td>
+                <td>{{ item.best_time }}</td>
+            {% endif %}
+            {% if round == 5 %}
+                <td>{{ item.time2 }}</td>
+                <td>{{ item.penalty2 }}</td>
+                <td>{{ item.final_time2 }}</td>
+                <td>{{ item.time3 }}</td>
+                <td>{{ item.penalty3 }}</td>
+                <td>{{ item.final_time3 }}</td>
+                <td>{{ item.time4 }}</td>
+                <td>{{ item.penalty4 }}</td>
+                <td>{{ item.final_time4 }}</td>
+                <td>{{ item.time5 }}</td>
+                <td>{{ item.penalty5 }}</td>
+                <td>{{ item.final_time5 }}</td>
+                <td>{{ item.best_time }}</td>
+            {% endif %}
+        </tr>
+        {% endif %}
+    {% endfor %}
+</table>
+{% endblock %}

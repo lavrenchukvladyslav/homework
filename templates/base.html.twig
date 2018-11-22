@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block table %}
+    <style>
+        table tr td{
+            border: 1px solid black;
+            padding: 3px;
+            margin: 0;
+            text-align: center;
+        }
+    </style>
+    <h4>Category {{ sort }}</h4>
+<table>
+    <tr>
+        <td>{{ 'id'|upper }}</td>
+        <td>{{ 'class'|upper }}</td>
+        <td>{{ 'name'|upper }}</td>
+        <td>{{ 'vehicle'|upper }}</td>
+    </tr>
+    {% for item in database %}
+        {% if item.class == sort %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.class }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.vehicle }}</td>
+        </tr>
+        {% endif %}
+    {% endfor %}
+</table>
+{% endblock %}
