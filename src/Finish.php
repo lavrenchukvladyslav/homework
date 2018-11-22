@@ -4,11 +4,6 @@ namespace src;
 
 Class Finish{
 
-    public function addRound($database){
-
-        return $database;
-    }
-
 
 
 //    public function addTime($database)
@@ -51,6 +46,24 @@ Class Finish{
 //
 //        } return $database;
 //    }
+    public function addRoundsCount (){
+        $round = $_POST['round'];
+        if ($round === "" || $round === 0){
+            $round =1;
+        } else {
+            $round = $_POST['round'];
+        }
+        return $round;
+    }
+    public function renderRoundsCountHeader($round){
+//        if ($round == 1){
+//            echo '<h1 style="text-align: center">'.$round.' ROUND'.'</h1>';
+//        } elseif ($round !== 1){
+//            echo '<h1 style="text-align: center">'.$round.' ROUNDS'.'</h1>';
+//        }
+        echo $round;
+
+    }
 
 
     public function addTime($database, $round)
