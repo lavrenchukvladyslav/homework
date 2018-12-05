@@ -1,13 +1,9 @@
-
-
-
 <?php
 
 use src\Finish;
 require_once __DIR__.'/../data/database.php';
 require_once '../vendor/autoload.php';
 
-//
 
 
 
@@ -22,12 +18,19 @@ $finish = new Finish();
 $round = $finish->addRoundsCount();
 $finish->renderRoundsCountHeader($database);
 $database = $finish->addTime($database,$round);
-$database = $finish->sortByTime($database);
+
+$database = $finish->sortByClass($database);
+
+$database = $finish->sortByTime($database , 0);
+
+//$database = $finish->mergeArrays($database);
+
+//$newArray = array_merge ($database[0],$database[1],$database[2]);
 
 // render twig templates
-echo $template->render(array('database' => $database, 'sort' => 'A', 'round' => $round));
-echo $template->render(array('database' => $database, 'sort' => 'B', 'round' => $round));
-echo $template->render(array('database' => $database, 'sort' => 'C', 'round' => $round));
+echo $template->render(array('database' => $database[0], 'sort' => 'A', 'round' => $round));
+//echo $template->render(array('database' => $database, 'sort' => 'B', 'round' => $round));
+//echo $template->render(array('database' => $database, 'sort' => 'C', 'round' => $round));
 
 
 
@@ -39,10 +42,6 @@ echo $template->render(array('database' => $database, 'sort' => 'C', 'round' => 
 //    $finish->renderFinishTable($database,'C',$round);
 //    $finish->renderWinnersTable($database,'C',$round);
 //    $finish->CalculateRoundsTime($database,$round);
-
-
-
-echo '<br>';
 
 
 

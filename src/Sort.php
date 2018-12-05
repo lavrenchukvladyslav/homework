@@ -13,7 +13,6 @@ Class Sort{
     public function renderStart($database, $class)
     {
         echo '<table>';
-
         foreach ($database as $item){
                 if ($item['class'] === $class){
                     echo '<tr>';
@@ -35,10 +34,6 @@ Class Sort{
                     echo '</tr>';
                 }
         }
-
-
-
-
         echo '</table>';
     }
 

@@ -68,57 +68,27 @@ Class Finish{
 
     public function addTime($database, $round)
     {
-
+//        $roundcount =0;
+//        $roundName =1;
         foreach ($database as $item => $value) {
-            $database[$item]['time'] = mt_rand(1, 200);
-            $database[$item]['penalty'] = mt_rand(0, 5);
-            $database[$item]['final_time'] = $database[$item]['time'] + $database[$item]['penalty'];
-            $database[$item]['best_time'] = $database[$item]['final_time'];
-            switch($round) {
-                case 2:
-                    $database[$item]['time2'] = mt_rand(1, 200);
-                    $database[$item]['penalty2'] = mt_rand(0, 5);
-                    $database[$item]['final_time2'] = $database[$item]['time2'] + $database[$item]['penalty2'];
-                    $database[$item]['best_time'] = min($database[$item]['final_time'],$database[$item]['final_time2']);
-                break;
-                case 3:
-                    $database[$item]['time2'] = mt_rand(1, 200);
-                    $database[$item]['penalty2'] = mt_rand(0, 5);
-                    $database[$item]['final_time2'] = $database[$item]['time2'] + $database[$item]['penalty2'];
-                    $database[$item]['time3'] = mt_rand(1, 200);
-                    $database[$item]['penalty3'] = mt_rand(0, 5);
-                    $database[$item]['final_time3'] = $database[$item]['time3'] + $database[$item]['penalty3'];
-                    $database[$item]['best_time'] = min($database[$item]['final_time'],$database[$item]['final_time2'],$database[$item]['final_time3']);
-                break;
-                case 4:
-                    $database[$item]['time2'] = mt_rand(1, 200);
-                    $database[$item]['penalty2'] = mt_rand(0, 5);
-                    $database[$item]['final_time2'] = $database[$item]['time2'] + $database[$item]['penalty2'];
-                    $database[$item]['time3'] = mt_rand(1, 200);
-                    $database[$item]['penalty3'] = mt_rand(0, 5);
-                    $database[$item]['final_time3'] = $database[$item]['time3'] + $database[$item]['penalty3'];
-                    $database[$item]['time4'] = mt_rand(1, 200);
-                    $database[$item]['penalty4'] = mt_rand(0, 5);
-                    $database[$item]['final_time4'] = $database[$item]['time4'] + $database[$item]['penalty4'];
-                    $database[$item]['best_time'] = min($database[$item]['final_time'],$database[$item]['final_time2'],$database[$item]['final_time3'],$database[$item]['final_time4']);
-                    break;
-                case 5:
-                    $database[$item]['time2'] = mt_rand(1, 200);
-                    $database[$item]['penalty2'] = mt_rand(0, 5);
-                    $database[$item]['final_time2'] = $database[$item]['time2'] + $database[$item]['penalty2'];
-                    $database[$item]['time3'] = mt_rand(1, 200);
-                    $database[$item]['penalty3'] = mt_rand(0, 5);
-                    $database[$item]['final_time3'] = $database[$item]['time3'] + $database[$item]['penalty3'];
-                    $database[$item]['time4'] = mt_rand(1, 200);
-                    $database[$item]['penalty4'] = mt_rand(0, 5);
-                    $database[$item]['final_time4'] = $database[$item]['time4'] + $database[$item]['penalty4'];
-                    $database[$item]['time5'] = mt_rand(1, 200);
-                    $database[$item]['penalty5'] = mt_rand(0, 5);
-                    $database[$item]['final_time5'] = $database[$item]['time5'] + $database[$item]['penalty5'];
-                    $database[$item]['best_time'] = min($database[$item]['final_time'],$database[$item]['final_time2'],$database[$item]['final_time3'],$database[$item]['final_time4'],$database[$item]['final_time5']);
-                    break;
+//            $roundcount = 0;
+//            $database[$item][$roundcount]['roundName'] = 0;
+            $i=0;
+            for ($roundcount = 1; $roundcount < $round+1; $roundcount++) {
+                $database[$item][$roundcount]['roundcount'] = $roundcount;
+                $database[$item][$roundcount]['roundName'] = $database[$item][$roundcount]['roundName'] +1;
+                $database[$item][$roundcount]['time'] = mt_rand(1, 200);
+                $database[$item][$roundcount]['penalty'] = mt_rand(0, 5);
+                $database[$item][$roundcount]['final_time'] = $database[$item][$roundcount]['time'] + $database[$item][$roundcount]['penalty'];
+//                $database[$item][$i]['final_time'] = $database[$item][$roundcount]['final_time'];
+                $database[$item]['best_time'] = min(
+                $database[$item][$i]['final_time'],$database[$item][2]['final_time'],$database[$item][3]['final_time'],$database[$item][4]['final_time'],$database[$item][5]['final_time']
+                );
             }
         } return $database;
+    }
+    public function getBestTime($database, $round){
+
     }
 
 
@@ -128,7 +98,7 @@ Class Finish{
 
 
 
-    public function sortByTime ($database){
+    public function sortByTime ($database, $i){
         $new_array = array();
         $sortable_array = array();
 
@@ -147,188 +117,49 @@ Class Finish{
             asort($sortable_array);
 
             foreach ($sortable_array as $k => $v) {
-                $new_array[$k] = $database[$k];
+                $new_array[$i][$k] = $database[$k];
+            }
+            return $new_array[$i];
+        }
+    }
+    public function sortByClass ($database){
+        $new_array = array();
+        $sortable_array = array();
+
+        if (count($database) > 0) {
+            foreach ($database as $k => $v) {
+                if (is_array($v)) {
+                    foreach ($v as $k2 => $v2) {
+                        if ($k2 == 'class') {
+                            $sortable_array[$k] = $v2;
+                        }
+                    }
+                } else {
+                    $sortable_array[$k] = $v;
+                }
+            }
+            asort($sortable_array);
+            foreach ($sortable_array as $k => $v) {
+                if (($database[$k]['class'] == 'A')){
+
+                    $new_array[0][$k] = $database[$k];
+                }
+                if (($database[$k]['class'] == 'B')){
+
+                    $new_array[1][$k] = $database[$k];
+                }
+                if (($database[$k]['class'] == 'C')){
+
+                    $new_array[2][$k] = $database[$k];
+                }
             }
         }
-
         return $new_array;
     }
+    public function mergeArrays($database){
+        $newArray=[];
+        $newArray = array_merge ($database[0],$database[1],$database[2]);
+        return $newArray;
 
-
-
-//    $database = array_sort($database, 'place', SORT_ASC);
-    public function renderFinishTable($database, $class, $round)
-    {
-
-        echo '<h3>'.'Category '.$class.'</h3>';
-        echo '<table>';
-        echo '<tr>';
-        echo '<th>';
-        echo 'ID';
-        echo '<th>';
-
-        echo '<th>';
-        echo 'CLASS';
-        echo '<th>';
-
-        echo '<th>';
-        echo 'NAME';
-        echo '<th>';
-
-        echo '<th>';
-        echo 'VEHICLE';
-        echo '<th>';
-        echo '<th>';
-        echo 'TIME';
-        echo '<th>';
-        echo '<th>';
-        echo 'PENALTY';
-        echo '<th>';
-        echo '<th>';
-        echo 'RESULT TIME';
-        echo '<th>';
-        echo '<th>';
-        echo 'PENALTY2';
-        echo '<th>';
-        echo '<th>';
-        echo 'RESULT TIME2';
-        echo '<th>';
-        echo '</tr>';
-        foreach ($database as $item => $value) {
-            if ($database[$item]['class'] === $class) {
-                echo '<tr>';
-                echo '<td>';
-                echo $database[$item]['id'];
-                echo '<td>';
-
-                echo '<td>';
-                echo $database[$item]['class'];
-                echo '<td>';
-
-                echo '<td>';
-                echo $database[$item]['name'];
-                echo '<td>';
-
-                echo '<td>';
-                echo $database[$item]['vehicle'];
-                echo '<td>';
-                echo '<td>';
-                echo $database[$item]['time'];
-                echo '<td>';
-                echo '<td>';
-                echo $database[$item]['penalty'];
-                echo '<td>';
-                echo '<td>';
-                echo $database[$item]['final_time'];
-                echo '<td>';
-                echo '<td>';
-                echo $database[$item]['time2'];
-                echo '<td>';
-                echo '<td>';
-                echo $database[$item]['penalty2'];
-                echo '<td>';
-                echo '<td>';
-                echo $database[$item]['final_time2'];
-                echo '<td>';
-                echo '<td>';
-                echo $database[$item]['time3'];
-                echo '<td>';
-                echo '<td>';
-                echo $database[$item]['penalty3'];
-                echo '<td>';
-                echo '<td>';
-                echo $database[$item]['final_time3'];
-                echo '<td>';
-                echo '<td>';
-                echo $database[$item]['time4'];
-                echo '<td>';
-                echo '<td>';
-                echo $database[$item]['penalty4'];
-                echo '<td>';
-                echo '<td>';
-                echo $database[$item]['final_time4'];
-                echo '<td>';
-                echo '<td>';
-                echo $database[$item]['time5'];
-                echo '<td>';
-                echo '<td>';
-                echo $database[$item]['penalty5'];
-                echo '<td>';
-                echo '<td>';
-                echo $database[$item]['final_time5'];
-                echo '<td>';
-                echo '</tr>';
-//                asort($winers);
-//                echo($winers);
-            }
-        }
-
-        echo '</table>';
     }
-    public function renderWinnersTable($database, $class, $round){
-
-        echo '<h3>'.'Winners '.$class.'</h3>';
-        echo '<table>';
-        $i=0;
-        echo '<tr>';
-        echo '<th>';
-        echo 'ID';
-        echo '<th>';
-
-        echo '<th>';
-        echo 'CLASS';
-        echo '<th>';
-
-        echo '<th>';
-        echo 'NAME';
-        echo '<th>';
-
-        echo '<th>';
-        echo 'VEHICLE';
-        echo '<th>';
-        echo '<th>';
-        echo 'TIME';
-        echo '<th>';
-        echo '<th>';
-        echo 'PENALTY';
-        echo '<th>';
-        echo '<th>';
-        echo 'RESULT TIME';
-        echo '<th>';
-        echo '</tr>';
-        foreach ($database as $item => $value){
-
-            if ($database[$item]['class'] === $class){
-                $i++;
-                if ($i == 4) break;
-                echo '<tr>';
-                echo '<td>';
-                echo $database[$item]['id'];
-                echo '<td>';
-                echo '<td>';
-                echo $database[$item]['class'];
-                echo '<td>';
-                echo '<td>';
-                echo $database[$item]['name'];
-                echo '<td>';
-                echo '<td>';
-                echo $database[$item]['vehicle'];
-                echo '<td>';
-                echo '<td>';
-                echo $database[$item]['time'];
-                echo '<td>';
-                echo '<td>';
-                echo $database[$item]['penalty'];
-                echo '<td>';
-                echo '<td>';
-                echo $database[$item]['final_time'];
-                echo '<td>';
-                echo '</tr>';
-//                asort($winers);
-//                echo ($winers);
-            }
-        }
-
-        echo '</table>';
-}
 }
