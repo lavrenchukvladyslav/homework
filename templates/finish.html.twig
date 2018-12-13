@@ -5,7 +5,6 @@
         <button type="submit">submit</button>
     </form>
 {% endblock %}
-
 {% block table %}
     <style>
         table tr td{
@@ -15,56 +14,35 @@
             text-align: center;
         }
     </style>
-    <h4>Category {{ sort }}</h4>
-
-
-
-    {#{{ dump(database.3) }}#}
-    <h5>{{ database.id}}</h5>
     <table>
     <tr style="background-color: gainsboro">
         <td>{{ 'id'|upper }}</td>
         <td>{{ 'class'|upper }}</td>
         <td>{{ 'name'|upper }}</td>
         <td>{{ 'vehicle'|upper }}</td>
-        {% for item in database %}
-
-            {#<td>round{{ item.roundcount1 }}time</td>#}
-
-
-        {% endfor %}
-        {#{% for item in database %}#}
-            {#<td>ROUND {{ roundcount.roundcount }} TIME</td>#}
-            {#<td>ROUND {{ roundcount.roundcount }} PENALTY</td>#}
-            {#<td>ROUND {{ roundcount.roundcount }} FINAL TIME</td>#}
-        {#{% endfor %}#}
-        {% for item in database %}
-            <td>ROUND {{ roundcount.roundcount }} TIME</td>
-            <td>ROUND {{ roundcount.roundcount }} PENALTY</td>
-            <td>ROUND {{ roundcount.roundcount }} FINAL TIME</td>
-        {% endfor %}
-        <td>BEST TIME</td>
+        {% if round is not null and round > 0 %}
+            {% for i in 1..round %}
+                <td>ROUND {{ i }} TIME</td>
+                <td>ROUND {{ i }} PENALTY</td>
+                <td>ROUND {{ i }} RESULT</td>
+            {% endfor %}
+            {#<td>BEST TIME</td>#}
+        {% endif %}
     </tr>
-
-
         {% for item in database %}
         <tr>
             <td>{{ item.id }}</td>
             <td>{{ item.class }}</td>
             <td>{{ item.name }}</td>
             <td>{{ item.vehicle }}</td>
-            {#{% if roundcount is define %}#}
-
             {% for roundcount in item %}
-                <td>{{ roundcount.time }}</td>
-                <td>{{ roundcount.penalty }}</td>
-                <td>{{ roundcount.final_time }}</td>
+                {% for results in roundcount %}
+
+                    <td>{{results.time }}</td>
+                    <td>{{results.penalty }}</td>
+                    <td>{{results.final_time }}</td>
+                {% endfor %}
             {% endfor %}
-
-            {#{% endif %}#}
-
-            <td><b>{{ item.best_time }}</b></td>
-
         {% endfor %}
         </tr>
 </table>

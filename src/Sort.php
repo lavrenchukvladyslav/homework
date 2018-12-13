@@ -4,73 +4,45 @@
 namespace src;
 
 Class Sort{
-//    public function __construct($database, $class){
-//
-//    }
 
+    public function sortByClass ($database){
+        $new_array = array();
+        $sortable_array = array();
 
-
-    public function renderStart($database, $class)
-    {
-        echo '<table>';
-        foreach ($database as $item){
-                if ($item['class'] === $class){
-                    echo '<tr>';
-                    echo '<td>';
-                    echo $item['id'];
-                    echo '<td>';
-
-                    echo '<td>';
-                    echo $item['class'];
-                    echo '<td>';
-
-                    echo '<td>';
-                    echo $item['name'];
-                    echo '<td>';
-
-                    echo '<td>';
-                    echo $item['vehicle'];
-                    echo '<td>';
-                    echo '</tr>';
+        if (count($database) > 0) {
+            foreach ($database as $k => $v) {
+                if (is_array($v)) {
+                    foreach ($v as $k2 => $v2) {
+                        if ($k2 == 'class') {
+                            $sortable_array[$k] = $v2;
+                        }
+                    }
+                } else {
+                    $sortable_array[$k] = $v;
                 }
-        }
-        echo '</table>';
-    }
+            }
+            foreach ($sortable_array as $k => $v) {
+                if (($database[$k]['class'] == 'A')){
 
+                    $new_array[0][$k] = $database[$k];
+                }
+                if (($database[$k]['class'] == 'B')){
 
-    public function renderStart1($database, $class)
-    {
-        echo '<table>';
+                    $new_array[1][$k] = $database[$k];
+                }
+                if (($database[$k]['class'] == 'C')){
 
-        foreach ($database as $item){
-            if ($item['class'] === $class){
-                echo '<tr>';
-                echo '<td>';
-                echo $item['id'];
-                echo '<td>';
-
-                echo '<td>';
-                echo $item['class'];
-                echo '<td>';
-
-                echo '<td>';
-                echo $item['name'];
-                echo '<td>';
-
-                echo '<td>';
-                echo $item['vehicle'];
-                echo '<td>';
-                echo '</tr>';
+                    $new_array[2][$k] = $database[$k];
+                }
             }
         }
-
-
-
-
-        echo '</table>';
+        return $new_array;
     }
+    public function mergeArrays($database){
+        $newArray = array_merge ($database[0],$database[1],$database[2]);
+        return $newArray;
 
-
+    }
 }
 
 
