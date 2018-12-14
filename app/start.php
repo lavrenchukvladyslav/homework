@@ -14,7 +14,7 @@ $twig->addExtension(new Twig_Extension_Debug());
 $template = $twig->load('start.html.twig', ['round' => $_POST['round']]);
 $finish = new Sort();
 
-$database = $finish->sortByClass($database);
+$database = $finish->splitArraysByClass($database);
 $database = $finish->mergeArrays($database);
 $newArray = array_merge ($database[0],$database[1],$database[2]);
 

@@ -17,7 +17,7 @@ $finish = new Finish();
 $round = $finish->addRoundsCount();
 $database = $finish->addTime($database,$round);
 $database = $finish->sortByTime($database , 0);
-$database = $finish->sortByClass($database);
+$database = $finish->splitArraysByClass($database);
 $database = $finish->mergeArrays($database);
 $newArray = array_merge ($database[0],$database[1],$database[2]);
 

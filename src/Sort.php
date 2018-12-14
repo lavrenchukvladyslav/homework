@@ -5,7 +5,7 @@ namespace src;
 
 Class Sort{
 
-    public function sortByClass ($database){
+    public function splitArraysByClass ($database){
         $new_array = array();
         $sortable_array = array();
 
