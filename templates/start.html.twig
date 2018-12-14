@@ -1,3 +1,4 @@
+{% extends 'base.html.twig' %}
 {% block table %}
     <style>
         table tr td{
@@ -8,7 +9,7 @@
         }
     </style>
 <table>
-    <tr>
+    <tr style="background-color: gainsboro">
         <td>{{ 'id'|upper }}</td>
         <td>{{ 'class'|upper }}</td>
         <td>{{ 'name'|upper }}</td>

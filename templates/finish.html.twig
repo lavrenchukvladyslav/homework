@@ -1,19 +1,10 @@
+{% extends 'base.html.twig' %}
 {% block form %}
-    <form action="" method="POST">
-        <h3>Select rounds count</h3>
-        <input type="number" name="round">
-        <button type="submit">submit</button>
-    </form>
+    {% include 'form.html.twig' %}
+
 {% endblock %}
 {% block table %}
-    <style>
-        table tr td{
-            border: 1px solid black;
-            padding: 3px;
-            margin: 0;
-            text-align: center;
-        }
-    </style>
+
     <table>
     <tr style="background-color: gainsboro">
         <td>{{ 'id'|upper }}</td>
@@ -26,7 +17,6 @@
                 <td>ROUND {{ i }} PENALTY</td>
                 <td>ROUND {{ i }} RESULT</td>
             {% endfor %}
-            {#<td>BEST TIME</td>#}
         {% endif %}
     </tr>
         {% for item in database %}
